@@ -1,5 +1,19 @@
 'use strict';
 
+
+var minCustList = document.getElementsByClassName('min');
+var maxCustList = document.getElementsByClassName('max');
+var avgCookiesList = document.getElementsByClassName('avg');
+var showMinCust = [];
+var showMaxCust = [];
+var showAvgCookies = [];
+
+for (var i = 0; i < minCustList.length; i++){
+  showMinCust[i] = minCustList[i].textContent;
+  showMaxCust[i] = maxCustList[i].textContent;
+  showAvgCookies[i] = avgCookiesList[i].textContent;
+}
+
 //function for random numbers. The maximum is exclusive and the minimum is inclusive
 var randomCustomers = function (minCust, maxCust) {
   var min = Math.ceil(minCust);
@@ -10,30 +24,30 @@ var randomCustomers = function (minCust, maxCust) {
 
 var pike = {
   name: '1st and Pike',
-  minCust:23, // min amount of cutomers per hour
-  maxCust:65,
-  avgSale:6.3, //avrage cookie sale for 1 customer
+  minCust:showMinCust[0], // min amount of cutomers per hour
+  maxCust:showMaxCust[0],
+  avgSale:showAvgCookies[0], //avrage cookie sale for 1 customer
   amountOfCust: randomCustomers,
-  cookiesInHour: [],
+  cookiesInHour: []
 };
 
 //check how random function works with array
-console.log(pike.amountOfCust(pike.minCust, pike.maxCust));
+// console.log(pike.amountOfCust(pike.minCust, pike.maxCust));
 
 var seaTac = {
   name: 'SeaTac Airport',
-  minCust:3,
-  maxCust:24,
-  avgSale:1.2,
+  minCust:showMinCust[1], 
+  maxCust:showMaxCust[1],
+  avgSale:showAvgCookies[1],
   amountOfCust: randomCustomers,
   cookiesInHour: []
 };
 
 var seattleCenter = {
   name: 'Seattle Center',
-  minCust:11,
-  maxCust:38,
-  avgSale:3.7,
+  minCust:showMinCust[2], 
+  maxCust:showMaxCust[2],
+  avgSale:showAvgCookies[2],
   amountOfCust: randomCustomers,
   cookiesInHour: []
   
@@ -42,9 +56,9 @@ var seattleCenter = {
 
 var capitolHill= {
   name: 'Capitol Hill',
-  minCust:20,
-  maxCust:38,
-  avgSale:2.3,
+  minCust:showMinCust[3], 
+  maxCust:showMaxCust[3],
+  avgSale:showAvgCookies[3],
   amountOfCust: randomCustomers,
   cookiesInHour: []
   
@@ -52,9 +66,9 @@ var capitolHill= {
 
 var alki = {
   name: 'Alki',
-  minCust:2,
-  maxCust:16,
-  avgSale:4.6,
+  minCust:showMinCust[4], 
+  maxCust:showMaxCust[4],
+  avgSale:showAvgCookies[4],
   amountOfCust: randomCustomers,
   cookiesInHour: []
 };
@@ -62,21 +76,12 @@ var alki = {
 //array of the stores objects
 var stores = [pike, seaTac, seattleCenter, capitolHill, alki];
 
-// var connectHtml = function() {
-//   var liEl = document.createElement('li');
-//   liEl.textContent = pike.name;
-//   storesList.appendChild(liEl);
-// };
-// connectHtml();
-
-
 var total;
 //function to count random amount of cookies for every hour and total amount
 var randomCookies = function (stores){
   var j =6;
   total = 0;
   for (var i = 0; i < 15; i++) {
-
     //for 6am to 11am included
     if (i < 6) {
       var cookiesInHourAvg = stores.amountOfCust(stores.minCust, stores.maxCust)*Math.ceil(stores.avgSale);//random number of cookies for every hour
@@ -102,8 +107,6 @@ var randomCookies = function (stores){
  
 };
 
-
-
 //connecting with html with <ul #stores>
 var storesList = document.getElementById('stores');
 
@@ -115,8 +118,6 @@ for (var i = 0; i < stores.length; i++){
   console.log (stores[i].cookiesInHour);
   console.log(`Store total:${stores[i].total}`);
   
-
-
 //using the same loop to make a list with future hyperlinks of all the object.names on top of the html
   var liEl = document.createElement('li');
   liEl.textContent = `${stores[i].name}`;
@@ -124,6 +125,7 @@ for (var i = 0; i < stores.length; i++){
 }
 
 var storesList = document.getElementsByClassName('location');
+
 //loop to show the random cookies result for each hour for each location in html
 for (i = 0; i < stores.length; i++){
   var lhEl = document.createElement('lh');
@@ -135,13 +137,10 @@ for (i = 0; i < stores.length; i++){
     liEl.textContent = stores[i].cookiesInHour[j];
     storesList[i].appendChild(liEl);
   }
-}
 
-// //sum of array
-// var total = 0;
-// for (var i = 0; i < pike.cookiesInHour.length; i++) {
-//   total += stores[0].cookiesInHour;
-//   stores[0].total = total;
-  
-// }
-// console.log(stores[0].total); 
+  liEl = document.createElement('li');
+  liEl.textContent = `Total: ${stores[i].total} cookies`;
+  storesList[i].appendChild(liEl); 
+
+
+}
