@@ -1,9 +1,40 @@
 h1{
     font-size: 3em;
 }
+
+ul {
+    margin: 1%;
+    list-style-type: circle;
+}
 lh {
     font-size: 2em;
+    padding-bottom:5%;
 }
-ul {
-    margin: 2%;
+li {
+    margin: 1%; 
 }
+
+ table {
+     position: relative;
+     border: 1px solid black;
+     margin: 1%;
+     width: 16%;
+     text-align: left;
+     left: 20em;
+     bottom: 30em;
+     
+}
+
+th {
+    padding: 2%;
+}
+ tr {
+    border: 1px solid black;
+ }
+
+ td {
+    border: 1px solid black;
+    padding: 2%;
+    width: 15%;
+ }
+
