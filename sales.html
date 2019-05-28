@@ -8,10 +8,29 @@
         rel="stylesheet" />
         <title>Sales</title>
     </head>
-    <!-- dont forget to put the link on the stores for easy nav -->
+   
     <body>
         <h1>Daily sales for Pat's Salmon Cookies.</h1>
-               
+         
+        <form id = "form">
+            <fieldset>
+                <label>Store name</label>
+                <input type="text" name = "storeName" maxlength="40">
+                <br />
+                <label>Min Amount of customers in hour</label>
+                <input type="number" name = "min" maxlength="8">
+                <br />
+                <label>Max Amount of customers in hour</label>
+                <input type="number" name = "max" maxlength="8">                            
+                <br />
+                <label>Average Amount of cookies for each customer</label>
+                <input type="number" name = "avg" maxlength="8">
+                <br />
+                <input type="submit" name="submitButton" value="submit" />
+
+
+            </fieldset>
+        </form>
         <table id = "sales">
             <thead>
             <tr id = "tableHeadHorizontal">
