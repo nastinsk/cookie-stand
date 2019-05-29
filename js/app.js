@@ -1,23 +1,18 @@
 'use strict';
 
-
-
 var workHours = ['6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm'];
 var stores = [];
-//variables for the future objects
-var pike, seaTac, seattleCenter, capitolHill, alki;
-var varArray = [pike, seaTac, seattleCenter, capitolHill, alki];
 //array with data from Pat
+// var newStore = [];
 var patData = [
   ['1st and Pike', 23, 65, 6.3],
   ['SeaTac Airport', 3, 24, 1.2],
   ['Seattle Center', 11, 38, 3.7],
   ['Capitol Hill', 20, 38, 2.3],
-  ['Alki', 2, 16, 4.6]
+  ['Alki', 2, 16, 4.6],
 ];
-
+console.log(patData);
 console.log(stores);
-
 
 //constructor function for stores
 function Store (name,minCustInHour, maxCustInHour, avgCookieSaleForCust){
@@ -28,7 +23,6 @@ function Store (name,minCustInHour, maxCustInHour, avgCookieSaleForCust){
   this.cookiesEachHour = [];
   this.totalCookiesOfTheDay;
   stores.push(this);
-  
 }
 
 //method for finding random number beetween min and max
@@ -50,7 +44,6 @@ Store.prototype.calkCookiesEachHour = function (){
 
 //connect object data with rows in tableBody
 Store.prototype.connectHtml = function () {
-   
   //print store name in 1st column
   var table = document.getElementById('tableBody');
   var trEl = document.createElement('tr');
@@ -71,15 +64,43 @@ Store.prototype.connectHtml = function () {
   trEl.appendChild(tdEl);
 };
 
-//loop to make an object instance based on data that we have from Pat
-for (var a = 0; a < patData.length; a++){
-  var mystore = new Store(patData[a][0], patData[a][1], patData[a][2],patData[a][3]);
+//push new store data from form to array into array in patData
+var formEl = document.getElementById('form');
+formEl.addEventListener('submit', function(e){
+
+  e.preventDefault();
+  
+  var name = e.target.storeName.value;
+  // newStore.push(name);
+ 
+  var minCustInHour = Number(e.target.min.value);
+  // newStore.push(minCustInHour);
+    
+  var maxCustInHour = Number(e.target.max.value);
+  // newStore.push(maxCustInHour);
+    
+  var avgCookieSaleForCust = Number(e.target.avg.value);
+  // newStore.push(avgCookieSaleForCust);
+  
+  // patData.push(newStore);
+  var mystore = new Store(name, minCustInHour, maxCustInHour, avgCookieSaleForCust);
   mystore.randomCust();
   mystore.calkCookiesEachHour();
   mystore.connectHtml();
- 
-}
+  // console.log(newStore); 
+});
+console.log(stores);
 
+
+//loop to make an object instance based on data that we have from Pat
+var mystore;
+for (var a = 0; a < patData.length; a++){
+  mystore = new Store(patData[a][0], patData[a][1], patData[a][2],patData[a][3]);
+  mystore.randomCust();
+  mystore.calkCookiesEachHour();
+  mystore.connectHtml();
+}
+console.log(stores.length);
 //total for the each hour in all stores
 var sumByHourArray = [];
 for(var j = 0; j < stores[0].cookiesEachHour.length; j++){
@@ -89,14 +110,12 @@ for(var j = 0; j < stores[0].cookiesEachHour.length; j++){
   }
   sumByHourArray.push(sumByHour);
 }
-console.log(sumByHourArray);
 
 //GRAND TOTAL SUM FOR ALL STORES
 var grandTotal = 0;
 for(i = 0; i < stores.length; i++){
   grandTotal+= stores[i].totalCookiesOfTheDay;
 }
-console.log(grandTotal);
 
 //inserting data in Table head(horizontal)
 var tableHeadHorizontal = document.getElementById('tableHeadHorizontal');
@@ -129,29 +148,5 @@ tdEl.textContent = grandTotal;
 trEl.appendChild(tdEl);
 
 
-var newStore = [];
-//push new store data from form to array into array in patData
-var formEl = document.getElementById('form');
-formEl.addEventListener('submit', function(e){
 
-  e.preventDefault();
-  
-  var name = e.target.storeName.value;
-  
-  newStore.push(name);
-  var minCustInHour = Number(e.target.min.value);
-  newStore.push(minCustInHour);
-  var maxCustInHour = Number(e.target.max.value);
-  newStore.push(maxCustInHour);
-  var avgCookieSaleForCust = Number(e.target.avg.value);
-  newStore.push(avgCookieSaleForCust);
-  patData.push(newStore);
-  new Store(name,minCustInHour, maxCustInHour, avgCookieSaleForCust);
-  console.log('this is new store:' + newStore);
-  var patStore;
-  varArray.push(patStore);
- 
-});
-console.log(stores);
-console.log(patData);
-console.log(varArray);
+
