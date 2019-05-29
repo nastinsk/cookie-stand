@@ -48,7 +48,7 @@ Store.prototype.connectHtml = function () {
   var table = document.getElementById('tableBody');
   var trEl = document.createElement('tr');
   table.appendChild(trEl);
-  thEl = document.createElement('th');  
+  thEl = document.createElement('th');
   thEl.textContent = this.name;
   trEl.appendChild(thEl);
 
@@ -69,28 +69,44 @@ var formEl = document.getElementById('form');
 formEl.addEventListener('submit', function(e){
 
   e.preventDefault();
-  
+
   var name = e.target.storeName.value;
   // newStore.push(name);
- 
+
   var minCustInHour = Number(e.target.min.value);
   // newStore.push(minCustInHour);
-    
+
   var maxCustInHour = Number(e.target.max.value);
-  // newStore.push(maxCustInHour);
-    
   var avgCookieSaleForCust = Number(e.target.avg.value);
-  // newStore.push(avgCookieSaleForCust);
-  
-  // patData.push(newStore);
   var mystore = new Store(name, minCustInHour, maxCustInHour, avgCookieSaleForCust);
   mystore.randomCust();
   mystore.calkCookiesEachHour();
   mystore.connectHtml();
-  // console.log(newStore); 
+  console.log(sumByHourArray.length);
+  addHourlySum(stores.length);
+
+  var tableFoot = document.getElementById('tableFoot');
+  var trEl = document.createElement('tr');
+  tableFoot.appendChild(trEl);
+  thEl = document.createElement('th');
+  thEl.textContent = 'Total'; //inserting "total" as a string
+  trEl.appendChild(thEl);
+
+  for (i = 0; i < sumByHourArray.length; i++){  //filling all totals data
+    var tdEl = document.createElement('td');
+    tdEl.textContent = sumByHourArray[i];
+    trEl.appendChild(tdEl);
+  }
+  var grandTotal = 0;
+  for(i = 0; i < stores.length; i++){
+    grandTotal+= stores[i].totalCookiesOfTheDay;
+  }
+  tdEl = document.createElement('td');  //grand total in table
+  tdEl.textContent = grandTotal;
+  trEl.appendChild(tdEl);
+
 });
 console.log(stores);
-
 
 //loop to make an object instance based on data that we have from Pat
 var mystore;
@@ -102,14 +118,19 @@ for (var a = 0; a < patData.length; a++){
 }
 console.log(stores.length);
 //total for the each hour in all stores
+
 var sumByHourArray = [];
-for(var j = 0; j < stores[0].cookiesEachHour.length; j++){
-  var sumByHour = 0;
-  for( i = 0; i<stores.length; i++){
-    sumByHour+= stores[i].cookiesEachHour[j];
+function addHourlySum (storesLength){
+  for(var j = 0; j < stores[0].cookiesEachHour.length; j++){
+    var sumByHour = 0;
+    for( i = 0; i<storesLength; i++){
+      sumByHour+= stores[i].cookiesEachHour[j];
+    }
+    sumByHourArray[j]=sumByHour;
   }
-  sumByHourArray.push(sumByHour);
 }
+addHourlySum(stores.length);
+
 
 //GRAND TOTAL SUM FOR ALL STORES
 var grandTotal = 0;
@@ -133,7 +154,7 @@ tableHeadHorizontal.appendChild(thEl);
 var tableFoot = document.getElementById('tableFoot');
 var trEl = document.createElement('tr');
 tableFoot.appendChild(trEl);
-thEl = document.createElement('th');  
+thEl = document.createElement('th');
 thEl.textContent = 'Total'; //inserting "total" as a string
 trEl.appendChild(thEl);
 

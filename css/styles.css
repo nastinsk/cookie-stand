@@ -36,8 +36,10 @@ input[type="submit"]{
     text-align:center;
 }
 input[type="submit"]:hover{
-    background-color: rgb(245, 218, 210);
-    
+    background-color:#f57979; 
+}
+input[type="submit"]:active{
+    background-color: rgb(245, 218, 210); 
 }
 
 table{
