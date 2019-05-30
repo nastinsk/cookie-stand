@@ -2,8 +2,6 @@
 
 var workHours = ['6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm'];
 var stores = [];
-//array with data from Pat
-// var newStore = [];
 var patData = [
   ['1st and Pike', 23, 65, 6.3],
   ['SeaTac Airport', 3, 24, 1.2],
@@ -11,8 +9,12 @@ var patData = [
   ['Capitol Hill', 20, 38, 2.3],
   ['Alki', 2, 16, 4.6],
 ];
-console.log(patData);
-console.log(stores);
+var sumByHourArray = [];
+var grandTotal = 0;
+var tableHeadHorizontal = document.getElementById('tableHead');
+var table = document.getElementById('tableBody');
+var tableFoot = document.getElementById('tableFoot');
+var formEl = document.getElementById('form');
 
 //constructor function for stores
 function Store (name,minCustInHour, maxCustInHour, avgCookieSaleForCust){
@@ -42,18 +44,17 @@ Store.prototype.calkCookiesEachHour = function (){
   this.totalCookiesOfTheDay = total;
 };
 
-//connect object data with rows in tableBody
+//render tableBody with objects data
 Store.prototype.connectHtml = function () {
-  //print store name in 1st column
-  var table = document.getElementById('tableBody');
+  //print store names in 1st column
   var trEl = document.createElement('tr');
   table.appendChild(trEl);
-  thEl = document.createElement('th');
+  var thEl = document.createElement('th');
   thEl.textContent = this.name;
   trEl.appendChild(thEl);
 
   //print table data
-  for (i = 0; i < this.cookiesEachHour.length; i++){
+  for (var i = 0; i < this.cookiesEachHour.length; i++){
     var tdEl = document.createElement('td');
     tdEl.textContent = this.cookiesEachHour[i];
     trEl.appendChild(tdEl);
@@ -64,66 +65,23 @@ Store.prototype.connectHtml = function () {
   trEl.appendChild(tdEl);
 };
 
-//push new store data from form to array into array in patData
-var formEl = document.getElementById('form');
-formEl.addEventListener('submit', function(e){
-
-  e.preventDefault();
-
-  var name = e.target.storeName.value;
-  // newStore.push(name);
-
-  var minCustInHour = Number(e.target.min.value);
-  // newStore.push(minCustInHour);
-
-  var maxCustInHour = Number(e.target.max.value);
-  var avgCookieSaleForCust = Number(e.target.avg.value);
-  var mystore = new Store(name, minCustInHour, maxCustInHour, avgCookieSaleForCust);
-  mystore.randomCust();
-  mystore.calkCookiesEachHour();
-  mystore.connectHtml();
-  console.log(sumByHourArray.length);
-  addHourlySum(stores.length);
-
-  var tableFoot = document.getElementById('tableFoot');
-  var trEl = document.createElement('tr');
-  tableFoot.appendChild(trEl);
-  thEl = document.createElement('th');
-  thEl.textContent = 'Total'; //inserting "total" as a string
-  trEl.appendChild(thEl);
-
-  for (i = 0; i < sumByHourArray.length; i++){  //filling all totals data
-    var tdEl = document.createElement('td');
-    tdEl.textContent = sumByHourArray[i];
-    trEl.appendChild(tdEl);
+//function to make an object instance based on data that we have from Pat
+function makingObjects (){
+  var mystore;
+  for (var a = 0; a < patData.length; a++){
+    mystore = new Store(patData[a][0], patData[a][1], patData[a][2],patData[a][3]);
+    mystore.randomCust();
+    mystore.calkCookiesEachHour();
+    mystore.connectHtml();
   }
-  var grandTotal = 0;
-  for(i = 0; i < stores.length; i++){
-    grandTotal+= stores[i].totalCookiesOfTheDay;
-  }
-  tdEl = document.createElement('td');  //grand total in table
-  tdEl.textContent = grandTotal;
-  trEl.appendChild(tdEl);
-
-});
-console.log(stores);
-
-//loop to make an object instance based on data that we have from Pat
-var mystore;
-for (var a = 0; a < patData.length; a++){
-  mystore = new Store(patData[a][0], patData[a][1], patData[a][2],patData[a][3]);
-  mystore.randomCust();
-  mystore.calkCookiesEachHour();
-  mystore.connectHtml();
 }
-console.log(stores.length);
-//total for the each hour in all stores
+makingObjects();
 
-var sumByHourArray = [];
+//total for the each hour in all stores
 function addHourlySum (storesLength){
   for(var j = 0; j < stores[0].cookiesEachHour.length; j++){
     var sumByHour = 0;
-    for( i = 0; i<storesLength; i++){
+    for(var i = 0; i<storesLength; i++){
       sumByHour+= stores[i].cookiesEachHour[j];
     }
     sumByHourArray[j]=sumByHour;
@@ -131,43 +89,70 @@ function addHourlySum (storesLength){
 }
 addHourlySum(stores.length);
 
-
 //GRAND TOTAL SUM FOR ALL STORES
-var grandTotal = 0;
-for(i = 0; i < stores.length; i++){
-  grandTotal+= stores[i].totalCookiesOfTheDay;
+function finalTotal () {
+  for(var i = 0; i < stores.length; i++){
+    grandTotal+= stores[i].totalCookiesOfTheDay;
+  }
 }
+finalTotal();
 
-//inserting data in Table head(horizontal)
-var tableHeadHorizontal = document.getElementById('tableHeadHorizontal');
-for (var i = 0; i < workHours.length; i++){
-  var thEl = document.createElement('th');
-  thEl.textContent = workHours[i];
+//inserting data in Table head
+function tableHead () {
+  for (var i = 0; i < workHours.length; i++){
+    var thEl = document.createElement('th');
+    thEl.textContent = workHours[i];
+    tableHeadHorizontal.appendChild(thEl);
+  }
+  thEl = document.createElement('th');
+  thEl.textContent = 'Total';
   tableHeadHorizontal.appendChild(thEl);
 }
-thEl = document.createElement('th');
-thEl.textContent = 'Total';
-tableHeadHorizontal.appendChild(thEl);
+tableHead();
 
 //connect sum of cookies sold in all stores each hour with html tableFoot
-//["total"] [    all data      ] [grandTotal]
-var tableFoot = document.getElementById('tableFoot');
-var trEl = document.createElement('tr');
-tableFoot.appendChild(trEl);
-thEl = document.createElement('th');
-thEl.textContent = 'Total'; //inserting "total" as a string
-trEl.appendChild(thEl);
+function tableFooter () {
+  var trEl = document.createElement('tr');
+  tableFoot.appendChild(trEl);
+  var thEl = document.createElement('th');
+  thEl.textContent = 'Total'; //inserting "total" as a string
+  trEl.appendChild(thEl);
 
-for (i = 0; i < sumByHourArray.length; i++){  //filling all totals data
-  var tdEl = document.createElement('td');
-  tdEl.textContent = sumByHourArray[i];
+  for (var i = 0; i < sumByHourArray.length; i++){  //filling all totals data
+    var tdEl = document.createElement('td');
+    tdEl.textContent = sumByHourArray[i];
+    trEl.appendChild(tdEl);
+  }
+
+  tdEl = document.createElement('td');  //grand total in table
+  tdEl.textContent = grandTotal;
   trEl.appendChild(tdEl);
 }
+tableFooter();
 
-tdEl = document.createElement('td');  //grand total in table
-tdEl.textContent = grandTotal;
-trEl.appendChild(tdEl);
+//event listener and handler
+formEl.addEventListener('submit', function(e){
+  e.preventDefault();
 
+  var newStore = [];
+  var name = e.target.storeName.value;
+  newStore.push(name);
+  var minCustInHour = Number(e.target.min.value);
+  newStore.push(minCustInHour);
+  var maxCustInHour = Number(e.target.max.value);
+  newStore.push(maxCustInHour);
+  var avgCookieSaleForCust = Number(e.target.avg.value);
+  newStore.push(avgCookieSaleForCust);
+  patData.push(newStore);
 
-
-
+  stores = [];
+  sumByHourArray = [];
+  grandTotal = 0;
+  table.innerHTML = ' ';
+  tableFoot.innerHTML = ' ';
+  
+  makingObjects();
+  addHourlySum(stores.length);
+  finalTotal();
+  tableFooter();
+});
