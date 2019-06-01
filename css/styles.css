@@ -1,35 +1,70 @@
-*{
-    background-color: rgb(247, 228, 220);
+html{
+    /* Photo by Tuesday Temptation on Unsplash */
+    background-image: url(img/salmonFamily.png), url(img/background-modified.jpg);
+    font-family: 'Halant', serif;
+    z-index:0;
+    font-family: Arial, Helvetica, sans-serif;
 }
+
+#animation {
+    position:absolute;
+    top:-86.5px;
+    margin-left:-272px;
+    z-index:-2;
+    transition:4s;
+    text-align: center;
+    
+}
+#animation:hover {
+    /* transition: 3s; */
+    margin-left: 1000px;
+    transition-timing-function:linear;
+    transition-duration: 5s;
+    
+}
+/* #white {
+    position: absolute;
+    background-color: rgb(229, 236, 238);
+    width: 960px;
+    height: 1500px;
+    right:50%;
+    top: 15%;
+    margin-right:-500px;
+    margin-bottom: 150px;
+} */
+
 
 h1{
     font-size: 3em;
-    margin: 2% 26.5% 2% 26.5%;
-    text-shadow: 0px 2px 3px #cc7a7a;
+    color:white;
+    margin: 2% 525px;
+    text-shadow: 0px 2px 3px #1f1e1e;
+    font-family:Arial, Helvetica, sans-serif;
 }
 form{
     margin:3% auto;
     width: 510px;
-    border: 2px solid rgb(155, 96, 96);
+    border: 2px solid rgb(151, 52, 35);
     padding: 2%;
     box-shadow: 5px 5px 5px rgb(155, 96, 96);
+    background: rgb(250, 245, 245);
 }
 fieldset {
     text-align: right;
 }
 
 input {
-    margin: 2%;
-    border: 2px solid rgb(155, 96, 96);
+    margin: 2% 1%;
+    border: 2px solid rgb(151, 52, 35);
     background-color: rgb(250, 245, 245);
     box-shadow: 5px 5px 5px rgb(155, 96, 96);
 }
 label {
-    font-weight: bolder;
-    font-size: 20px;
+    font-weight: bold;
+    font-size: 18px;
 }
 input[type="submit"]{
-    background-color: #eba6a6;
+    background-color:rgb(253, 89, 60);
     margin-right:80%;
     font-weight: bold;
     width: 20%;
@@ -45,7 +80,8 @@ input[type="submit"]:active{
 table{
     margin: 2% auto;
     border: 4px solid black;
-    width: 70%;    
+    width: 70%;  
+    background: rgba(250, 245, 245, 0.637)  
 }
 
 th, td {
@@ -55,7 +91,7 @@ th, td {
     margin: 2%;
     text-align: center;
     vertical-align:middle;
-    box-shadow: 10px 10px 10px rgb(155, 96, 96);
+    box-shadow: 10px 10px 10px rgb(146, 69, 58);
     padding: 15px;
 }
 td:hover{
@@ -66,7 +102,7 @@ th {
     text-align: right;
     padding: 10px;
     font-weight: bold;
-    background-color: #eba6a6    
+    background-color: 	rgb(253, 89, 60);    
 }
 
 thead{

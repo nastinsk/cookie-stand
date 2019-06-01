@@ -1,6 +1,7 @@
 html{
     /* Photo by Tuesday Temptation on Unsplash */
     background-image: url(img/salmonFamily.png), url(img/background-modified.jpg);
+    font-family: 'Halant', serif;
     z-index:0;
 }
 
@@ -63,6 +64,7 @@ header {
     border-right:none;
     padding:0% 1.5% 0% 5%;
     z-index:-1;
+    font-family: none;
 }
 #shopName :last-child{
     color: white;
@@ -74,6 +76,7 @@ header {
     padding:0% 5% 0% 3%;
     border-bottom:none;
     z-index:-1;
+    font-family: none;
 }
 nav {
     text-align:center;
@@ -93,6 +96,8 @@ button {
     height: 40px;
     background-color:rgb(154, 213, 218);
     border-radius: 8px;
+    font-family: 'Signika Negative', sans-serif;
+    color:rgb(64, 64, 65);
 }
 button:hover {
     background-color:rgb(241, 90, 44);
@@ -110,13 +115,15 @@ button:hover {
     flex-direction: row;
     justify-content: center;
     margin-bottom: 40px;
+    color:rgb(64, 64, 65);
 }
-#aboutUs text, #family text{
+#aboutUs text, #family text {
     width: 350px;
     height: 350px;
-    font-size: 25px;
 }
-
+#aboutUs text p {
+    font-size: 20px;
+}
 #aboutUs text h2, #family text h2{
     font-size: 30px;
     font-style: bold;
@@ -134,11 +141,13 @@ button:hover {
 }
 #family text{
     height: 280px;
+   
 }
 
 #family p{
     height: 240px;
     overflow: auto;
+    font-size: 20px;
 }
 #locations ul{
     flex-direction: column;
@@ -177,6 +186,6 @@ h2:hover{
     list-style-position: inside;
 }
 a{
-color: black;
-text-decoration:none;
+color:rgb(64, 64, 65);
+text-decoration: none;
 }
