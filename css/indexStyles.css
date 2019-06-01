@@ -1,5 +1,126 @@
-Photo by Daniele Levis Pelusi on Unsplash
+html{
+    /* Photo by Tuesday Temptation on Unsplash */
+    background-image: url(img/salmonFamily.png), url(img/background-modified.jpg);
+    z-index:0;
+}
 
+#animation {
+    position:absolute;
+    top:-86.5px;
+    margin-left:-272px;
+    z-index:-2;
+    transition:4s;
+    text-align: center;
+    
+}
+#animation:hover {
+    /* transition: 3s; */
+    margin-left: 1000px;
+    transition-timing-function:linear;
+    transition-duration: 5s;
+    
+}
+#white {
+    position: absolute;
+    background-color: rgb(229, 236, 238);
+    width: 960px;
+    height: 1200px;
+    right:50%;
+    top: 15%;
+    margin-right:-500px;
+}
 
+header {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+#cookie{
+    transition: 2s;
+}
 
-Photo by Tuesday Temptation on Unsplash
+#cookie:hover{
+    margin-left: 2200px;
+    transition-timing-function:linear;
+    transition-duration: 2s;
+
+}
+#cookie:hover ~ #animation{
+    margin-left: 1000px;
+    transition-timing-function:linear;
+    transition-duration: 5s;
+}
+
+#shopName :first-child{
+    color: white;
+    font-size: 5em;
+    transform:rotate(-90deg);
+    position: absolute;
+    left: -14.7%;
+    top: 5.6%;
+    border: 3px solid white;
+    border-right:none;
+    padding:0% 1.5% 0% 5%;
+    z-index:-1;
+}
+#shopName :last-child{
+    color: white;
+    font-size: 5em;
+    position: absolute;
+    left:-8.151%;
+    top:-6.5%;
+    border: 3px solid white;
+    padding:0% 5% 0% 3%;
+    border-bottom:none;
+    z-index:-1;
+}
+nav {
+    text-align:center;
+}
+ul {
+    margin: 50px auto 30px auto;
+    width: 600px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+
+button {
+    font-size: 20px;
+    width: 170px;
+    height: 40px;
+    background-color:rgb(154, 213, 218);
+    border-radius: 8px;
+}
+button:hover {
+    background-color:rgba(248, 107, 64, 0.733);
+}
+#line {
+    height: 10px;
+    width: 800px;
+    background: grey;
+    border-radius: 8px;
+    margin: 50px auto;
+}
+#aboutUs{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+#aboutUs text{
+    width: 350px;
+    height: 350px;
+    font-size: 25px;
+}
+#aboutUs text h2{
+    font-size: 30px;
+    font-style: bold;
+    padding-bottom: 10px;
+}
+
+#aboutUs>img{
+    width: 350px;
+    padding-left: 40px;
+}
+
