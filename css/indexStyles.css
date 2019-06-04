@@ -4,6 +4,10 @@ html{
     font-family: 'Halant', serif;
     z-index:0;
 }
+a{
+    color:rgb(64, 64, 65);
+    text-decoration: none;
+    } 
 
 #animation {
     position:absolute;
@@ -25,7 +29,7 @@ html{
     position: absolute;
     background-color: rgb(229, 236, 238);
     width: 960px;
-    height: 1500px;
+    height: 1530px;
     right:50%;
     top: 15%;
     margin-right:-500px;
@@ -59,7 +63,7 @@ header {
     transform:rotate(-90deg);
     position: absolute;
     left: -14.8%;
-    top: 4.6%;
+    top: 4.2%;
     border: 3px solid white;
     border-right:none;
     padding:0% 1.5% 0% 5%;
@@ -110,7 +114,7 @@ button:hover {
     border-radius: 8px;
     margin: 40px auto;
 }
-#aboutUs, #family, #info{
+#aboutUs, #family, #info, #shirt, #magnets, #cutter{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -151,41 +155,68 @@ button:hover {
 }
 #locations ul{
     flex-direction: column;
-    width: 350px;
+    margin: 20px; 
 }
-#info{
-    justify-content: center;
-    padding: 0px auto;
-}
+
 #info h2{
     font-size:30px;
     margin-bottom: 20px;
-    padding: 10px;
-    
+    padding: 10px;   
 }
+
 #info p,li{
     font-size:25px;
-    padding: 10px;
-    
+    padding: 10px;   
 }
+
 #workHours {
-    width: 350px;
-    margin-right: 40px;
+    width: 342px;
     border: 4px double rgb(64, 64, 65);
 }
-#locations{
-    margin-right: 40px;
+
+ #locations{
+    margin-left: 40px;
     border: 4px double rgb(64, 64, 65);
+    width: 342px;
 }
+
 h2:hover{
     color:rgb(241, 90, 44);
 }
 #info ul{
     list-style-type: circle;
-    /* list-style-image:url(/css/img/fishList.png); */
     list-style-position: inside;
 }
-a{
-color:rgb(64, 64, 65);
-text-decoration: none;
+#souvenirPage text{
+    margin-left: 30px;
+    width: 350px;
+}
+#souvenirPage img{
+    width: 250px;
+    height: 250px;
+}
+#souvenirPage h2{
+    font-size:30px;
+    margin-bottom: 10px;   
+}
+#souvenirPage h3{
+    font-size: 25px;
+    color: rgb(108, 110, 110);
+    margin-bottom:20px;
+}
+#souvenirPage h4{
+    font-style: italic;
+    margin-top:10px;
+}
+
+#souvenirPage button{
+    margin-left: 150px;
+    margin-top: 20px;
+    width: 120px;
+    height: 30px;
+    background-color: rgb(241, 90, 44);
+}
+#souvenirPage button:hover{
+    background-color: rgb(104, 207, 207);
+
 }
